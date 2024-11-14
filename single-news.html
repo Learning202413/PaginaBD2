@@ -157,26 +157,33 @@
                             Si tienes alguna pregunta o necesitas ayuda, no dudes en ponerte en contacto con tu profesor o compañeros de clase para obtener ayuda. ¡Buena suerte con la creación de su modelo de base de datos conceptual!
                         </p>
 						<div class="hero-btns">
-							<a href="https://drive.google.com/file/d/16JT3peEMRNfCZFIWO6q_QjNsXS4bShWm/view?usp=sharing" 
-   								class="boxed-btn" 
-  								 style="background-color: blue; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;" 
-   								onmouseover="this.style.backgroundColor='black';" 
-  								 onmouseout="this.style.backgroundColor='blue';"
-   								target="_blank">
-  								 Descargar
-							</a>
+  <!-- Botón Descargar con Spinner -->
+  <a href="https://drive.google.com/file/d/16JT3peEMRNfCZFIWO6q_QjNsXS4bShWm/view?usp=sharing" 
+     id="descargar-btn"
+     class="boxed-btn"
+     style="background-color: blue; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;"
+     onmouseover="this.style.backgroundColor='black';"
+     onmouseout="this.style.backgroundColor='blue';"
+     target="_blank"
+     onclick="mostrarCargando('descargar-btn', 'loading-spinner'); return false;">
+     Descargar
+  </a>
 
-						 
-							<a href="https://github.com/Learning202413/Semana-01.git" 
-							   class="bordered-btn" 
-							   style="border: 2px solid blue; color: blue; padding: 10px 20px; text-decoration: none; border-radius: 5px;" 
-							   onmouseover="this.style.backgroundColor='blue'; this.style.color='white';" 
-							   onmouseout="this.style.backgroundColor=''; this.style.color='blue';"
-							   target="_blank">
-							   GitHub
-							</a>
-						</div>
-				<div class="d-flex gap-2 justify-content-center py-5">
+  <!-- Botón GitHub con Spinner -->
+  <a href="https://github.com/Learning202413/Semana-01.git" 
+     id="github-btn"
+     class="bordered-btn"
+     style="border: 2px solid blue; color: blue; padding: 10px 20px; text-decoration: none; border-radius: 5px;"
+     onmouseover="this.style.backgroundColor='blue'; this.style.color='white';"
+     onmouseout="this.style.backgroundColor=''; this.style.color='blue';"
+     target="_blank"
+     onclick="mostrarCargando('github-btn', 'loading-spinner'); return false;">
+     GitHub
+  </a>
+</div>
+
+<!-- Contenedor de Cargando (Spinner) -->
+<div id="loading-spinner" class="d-none d-flex gap-2 justify-content-center py-5">
   <button class="btn btn-primary" type="button" disabled>
     <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
     <span class="visually-hidden" role="status">Loading...</span>
@@ -186,6 +193,28 @@
     <span role="status">Loading...</span>
   </button>
 </div>
+
+<!-- Script JavaScript -->
+<script>
+  // Función para mostrar el estado de "Cargando" y abrir el enlace
+  function mostrarCargando(buttonId, spinnerId) {
+    var boton = document.getElementById(buttonId);
+    var spinner = document.getElementById(spinnerId);
+
+    // Cambiar el contenido del botón a "Cargando..." y deshabilitarlo
+    boton.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Cargando...';
+    boton.style.pointerEvents = 'none'; // Deshabilitar clic mientras carga
+
+    // Mostrar el spinner de carga
+    spinner.classList.remove('d-none'); // Mostrar el spinner
+
+    // Redirigir al enlace después de un breve retraso (simulando carga)
+    setTimeout(function() {
+      window.open(boton.href, '_blank'); // Abrir el enlace en una nueva pestaña
+    }, 2000); // 2 segundos de espera
+  }
+</script>
+
 						
                     </div>
                 </div>
